@@ -1,10 +1,15 @@
 export default function notificationCreate(text, wrapper, color='error') {
-    let colors = {
+    const colors = {
         'warn': { bg: '#ffc107', textColor: '#000' },
         'success': { bg: '#00e644', textColor: '#fff'},
         'error': { bg: '#dc3545', textColor: '#fff'},
         'info': { bg: '#007bff', textColor: '#fff'},
-    }
+    },
+        delay = 4 * 1000; // ms to hide message
+
+    let notifWrap = wrapper,
+        notif = document.createElement('div'),
+        closeBtn = document.createElement('i');
     function hideNotification () {
         $(notif).slideUp({
             start: function () {
@@ -15,10 +20,6 @@ export default function notificationCreate(text, wrapper, color='error') {
             }
         })
     }
-    let delay = 100 * 1000, // ms
-        notifWrap = wrapper,
-        notif = document.createElement('div'),
-        closeBtn = document.createElement('i');
 
     closeBtn.classList.add('fas', 'fa-times', 'btn-close');
     closeBtn.addEventListener('click', function () {

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import registraion from '../js/registration';
 
 export default class Reg extends React.Component {
     constructor(props) {
@@ -25,44 +26,8 @@ export default class Reg extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (!this.formValidation()) return;
-        console.log('submit reg2!')
-
-        let form = new FormData(this.formRef.current);
-        form.delete('password-repeat');
-        form.delete('isRemember');
-
-        fetch('http://127.0.0.1:8000/user/create/', {
-                method: 'POST',
-                body: form
-            })
-            .then( response => {
-                response.json().then( json => {
-                    new Promise((function(resolve, reject) {
-                        if (response.status === 201) {
-                            notificate('Успешная регистрация!', this.props.notifWrap, 'success');
-                            resolve()
-                        } else {
-                            reject()
-                        }
-                    }).bind(this)) // говнокодим как можем!
-                    .then( () => {
-                        let loginForm = new FormData();
-                        loginForm.append('login', form.get('login'));
-                        loginForm.append('password', form.get('password'));
-                        this.props.login(loginForm); // авторизация после регистрации
-                    })
-                    .catch( () => { // ошибка при регистрации
-                        if (json.username || json.errors !== 0) {
-                            notificate('Пользователь с таким ником уже существует!', this.props.notifWrap, 'warn');
-                            this.formRef.current.elements['login'].value = '';
-                        } else {
-                            console.log(json);
-                            notificate('Неизвестная ошибка! Проверьте корректность введённых данных!', this.props.notifWrap, 'error');
-                        }
-                    });
-                });
-            })
-            .catch(() => notificate('Ошибка сервера при регистрации', this.props.notifWrap, 'error'));
+        registraion(this.formRef, this.props.notifWrap) // registration
+        
     }
 
     render() {

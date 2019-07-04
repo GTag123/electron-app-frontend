@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import login from '../js/login';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ export default class Login extends React.Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        this.props.login(new FormData(this.formRef.current));
+        login(new FormData(this.formRef.current), this.props.notifWrap);
     }
     render() {
         return (
