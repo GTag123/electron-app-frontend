@@ -1,0 +1,29 @@
+/* ------------ input message style -------------- */
+.input-wrap {
+    position: relative;
+}
+.input-message {
+    position: absolute;
+    top: 0;
+    right: -320px; /* body width + border-right width + 5 px */
+}
+.input-arrow {
+    position: relative;
+    border: 19px solid transparent;
+    border-right: 15px solid #498bff;
+    float: left;
+}
+.input-message-body {
+    height: 38px;
+    width: 300px;
+    background-color: #498bff;
+    color: #fff;
+    float: right;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 3px 3px 6px 1px black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* --------------------------------------------- */

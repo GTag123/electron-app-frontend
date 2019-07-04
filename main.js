@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app;
@@ -14,16 +16,18 @@ let mainWindow
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true
-        }
+        icon: __dirname + "/src/images/app-icon.png",
+        show: false,
+        // webPreferences: {
+        //     nodeIntegration: true
+        // }
     })
+    mainWindow.maximize(); // mainWindow show param become true
+    // mainWindow.removeMenu();
 
     // and load the index.html of the app.
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: path.join(__dirname, 'dist', 'index.html'),
         protocol: 'file:',
         slashes: true
     }))

@@ -5,12 +5,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'components/styles/main.css';
+import 'components/styles/input-message.css';
+import 'components/styles/auth-form.css';
+import 'components/styles/notification.css';
+import 'fontawesome/css/all.min.css';
+
+import Auth from  'components/jsx/auth.jsx';
+
 class App extends React.Component {
   render () {
     return (
-      <h1>Minimalistic Electron React Boilerplate Code :) Teeest</h1>
+      <Auth />
     );
   }
 }
 
-ReactDOM.render(<App/>,document.getElementById('app'));
+ReactDOM.render(<App/>,document.getElementById('main'));
