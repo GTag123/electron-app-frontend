@@ -11,7 +11,7 @@ export class Login extends React.Component {
     }
     async handleSubmit(event) {
         event.preventDefault();
-        login(new FormData(this.formRef.current), this.props.notifWrap);
+        login(new FormData(this.formRef.current));
     }
     render() {
         return (
@@ -41,6 +41,5 @@ export class Login extends React.Component {
 }
 
 Login.propTypes = {
-    changeForm: PropTypes.func.isRequired,
-    notifWrap: PropTypes.object,
+    changeForm: PropTypes.func.isRequired
 };

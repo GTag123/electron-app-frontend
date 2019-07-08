@@ -8,7 +8,6 @@ export class Auth extends React.Component {
         this.state = {
             isNewUser: false
         };
-        this.notifsRef = React.createRef();
         this.changeForm = this.changeForm.bind(this);
     }
     changeForm() {
@@ -16,23 +15,15 @@ export class Auth extends React.Component {
             isNewUser: !state.isNewUser
         }));
     }
-    componentDidMount () {
-        this.forceUpdate();
-    }
     render() {
         return (
-            <div className="centered">
-                <div className='notifications' ref={this.notifsRef}>
-                </div>
+            <div className="centered-auth">
                 <div className='auth-block'>
                     {this.state.isNewUser ?
-                        <Reg changeForm={this.changeForm}
-                            notifWrap={this.notifsRef.current} /> :
-                        <Login changeForm={this.changeForm}
-                            notifWrap={this.notifsRef.current} />}
+                        <Reg changeForm={this.changeForm} /> :
+                        <Login changeForm={this.changeForm} />}
                 </div>
             </div>
         );
     }
 }
-

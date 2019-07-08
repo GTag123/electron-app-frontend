@@ -27,7 +27,7 @@ export class Reg extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (!this.formValidation()) return;
-        registraion(this.formRef, this.props.notifWrap) // registration
+        registraion(this.formRef) // registration
         
     }
 
@@ -90,8 +90,7 @@ function ErrorMessage(props) {
 }
 
 Reg.propTypes = {
-    changeForm: PropTypes.func.isRequired,
-    notifWrap: PropTypes.object,
+    changeForm: PropTypes.func.isRequired
 };
 ErrorMessage.propTypes = {
     message: PropTypes.string,

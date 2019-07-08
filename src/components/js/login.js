@@ -1,33 +1,35 @@
 import { store } from 'components/redux/store/mainstore';
 import {
-    switchAuthState,
-    changeUser
+    switchAuthState
 } from 'components/redux/actions/authAction'
 
-export default function login(body, notifWrap) { // body is FormData
+export default function login(body) { // body is FormData
     let auth = function (loginJSON) {
         let token = loginJSON.token;
         switch (loginJSON['login_status']) {
-            case 1:
-                notificate('Успешная авторизация!', notifWrap, 'success');
+            case 1: // success auth
+                notificate('Успешная авторизация!', 'success');
+                localStorage.removeItem('auth_token');
+                localStorage.removeItem('user');
+
                 if ( body.get('isRemember') === 'on' ) {
                     localStorage.setItem('auth_token', token);
                     localStorage.setItem('user', JSON.stringify(loginJSON.user));
                 }
+
                 store.dispatch(switchAuthState(true));
-                store.dispatch(changeUser(loginJSON.user));
                 break;
-            case 2:
-                notificate('Неверный пароль', notifWrap, 'error');
+            case 2: // wrong password
+                notificate('Неверный пароль', 'error');
                 break;
-            case 3:
-                notificate('Пользователь заблокирован', notifWrap, 'error');
+            case 3: // user banned
+                notificate('Пользователь заблокирован', 'error');
                 break;
-            case 4:
-                notificate('Такой пользователь не существует!', notifWrap, 'warn');
+            case 4: // user doesn't exists
+                notificate('Такой пользователь не существует!', 'warn');
                 break;
             default:
-                notificate('Неизвестная ошибка!', notifWrap, 'error');
+                notificate('Неизвестная ошибка!', 'error');
         }
     };
 
@@ -37,5 +39,5 @@ export default function login(body, notifWrap) { // body is FormData
     })
         .then(response => response.json())
         .then(json => auth(json))
-        .catch(() => notificate('Ошибка сервера при авторизации', notifWrap, 'error'));
+        .catch(() => notificate('Ошибка сервера при авторизации', 'error'));
 }

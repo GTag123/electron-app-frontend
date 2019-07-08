@@ -1,3 +1,7 @@
+.notif-wrapper {
+    display: flex;
+    justify-content: center;
+}
 .notifications {
     z-index: 99999;
     position: fixed;

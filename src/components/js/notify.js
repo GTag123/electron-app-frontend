@@ -1,11 +1,13 @@
-export default function notificationCreate(text, wrapper, color='error') {
+import { store } from 'components/redux/store/mainstore';
+
+export default function notificationCreate(text, color='error', wrapper=store.getState().notifWrap) {
     const colors = {
         'warn': { bg: '#ffc107', textColor: '#000' },
         'success': { bg: '#00e644', textColor: '#fff'},
         'error': { bg: '#dc3545', textColor: '#fff'},
         'info': { bg: '#007bff', textColor: '#fff'},
     },
-        delay = 4 * 1000; // ms to hide message
+        delay = 3 * 1000; // ms to hide message
 
     let notifWrap = wrapper,
         notif = document.createElement('div'),
