@@ -4,6 +4,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { store } from 'components/redux/store/mainstore';
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,12 +15,14 @@ import 'components/styles/auth-form.css';
 import 'components/styles/notification.css';
 import 'fontawesome/css/all.min.css';
 
-import Auth from  'components/jsx/auth.jsx';
+import MainView from  'components/jsx/mainview.jsx';
 
 class App extends React.Component {
   render () {
     return (
-      <Auth />
+      <Provider store={store} >
+        <MainView />
+      </Provider>
     );
   }
 }

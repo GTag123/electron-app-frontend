@@ -1,14 +1,15 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import login from '../js/login';
+import PropTypes from 'prop-types'
 
-export default class Login extends React.Component {
+
+export class Login extends React.Component {
     constructor(props) {
         super(props);
         this.formRef = React.createRef();
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         login(new FormData(this.formRef.current), this.props.notifWrap);
     }
@@ -38,3 +39,8 @@ export default class Login extends React.Component {
         );
     }
 }
+
+Login.propTypes = {
+    changeForm: PropTypes.func.isRequired,
+    notifWrap: PropTypes.object,
+};

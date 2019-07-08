@@ -1,8 +1,9 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import registraion from '../js/registration';
+import PropTypes from 'prop-types'
 
-export default class Reg extends React.Component {
+
+export class Reg extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -86,4 +87,12 @@ function ErrorMessage(props) {
             </div>
         </div>
     );
+}
+
+Reg.propTypes = {
+    changeForm: PropTypes.func.isRequired,
+    notifWrap: PropTypes.object,
+};
+ErrorMessage.propTypes = {
+    message: PropTypes.string,
 }
