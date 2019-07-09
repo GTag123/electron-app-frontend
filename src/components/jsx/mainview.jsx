@@ -15,10 +15,10 @@ class MainView extends React.Component {
         super(props);
         this.notifsRef = React.createRef();
     }
-    componentDidMount () {
+    async componentDidMount () {
         this.props.dispatch(setNotifWrap(this.notifsRef.current)); // setting notify.js wrapper
-        tokenCheck();
-        this.forceUpdate(); // костыль костыльный!!! тагир в бешенстве!
+        await tokenCheck();
+        if (!this.props.loginned) this.forceUpdate(); // сойдёт
     }
     render () {
         console.log(this.props);

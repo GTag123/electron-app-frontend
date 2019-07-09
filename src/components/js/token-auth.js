@@ -31,7 +31,7 @@ export default function () {
             }
         };
     if (token && token.trim()) {
-        fetch('http://127.0.0.1:8000/user/info/', {
+        return fetch('http://127.0.0.1:8000/user/info/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,6 +51,7 @@ export default function () {
                     /* TODO FIXME WARN бэк говно! т.к. не даёт никак кодов успеха/ошибки. фиг знает чё там случается
                     крч. в нашём коде 1ккк уязвимостей + могут случаться непонятки между бэком и клентом 
                     проект пошёл в говно(((( */
+                    console.log('auth');
                     notificate('Успешная авторизация!', 'success');
                     store.dispatch(changeUser(json));
                     store.dispatch(switchAuthState(true));
