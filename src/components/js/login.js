@@ -1,7 +1,8 @@
 import { store } from 'components/redux/store/mainstore';
 import {
-    switchAuthState
-} from 'components/redux/actions/authAction'
+    switchAuthState,
+    changeUser
+} from 'components/redux/actions/authAction';
 
 export default function login(body) { // body is FormData
     let auth = function (loginJSON) {
@@ -10,13 +11,13 @@ export default function login(body) { // body is FormData
             case 1: // success auth
                 notificate('Успешная авторизация!', 'success');
                 localStorage.removeItem('auth_token');
-                localStorage.removeItem('user');
-
+                localStorage.removeItem('auth_date');
                 if ( body.get('isRemember') === 'on' ) {
                     localStorage.setItem('auth_token', token);
-                    localStorage.setItem('user', JSON.stringify(loginJSON.user));
+                    localStorage.setItem('auth_date', Date.now().toString());
+                    // localStorage.setItem('user', JSON.stringify(loginJSON.user));
                 }
-
+                store.dispatch(changeUser(loginJSON.user));
                 store.dispatch(switchAuthState(true));
                 break;
             case 2: // wrong password
@@ -33,7 +34,7 @@ export default function login(body) { // body is FormData
         }
     };
 
-    return fetch('http://127.0.0.1:8000/user/login/', {
+    fetch('http://127.0.0.1:8000/user/login/', {
         method: 'POST',
         body: body
     })

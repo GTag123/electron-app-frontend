@@ -1,5 +1,5 @@
 import React from 'react';
-import login from '../js/login';
+import login from 'components/js/login';
 import PropTypes from 'prop-types'
 
 

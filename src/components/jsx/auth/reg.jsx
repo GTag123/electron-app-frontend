@@ -1,5 +1,5 @@
 import React from 'react';
-import registraion from '../js/registration';
+import registraion from 'components/js/registration';
 import PropTypes from 'prop-types'
 
 

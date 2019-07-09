@@ -12,9 +12,9 @@ export default function regRequest(formRef) {
                 new Promise(function (resolve, reject) {
                     if (response.status === 201) {
                         notificate('Успешная регистрация!', 'success');
-                        resolve()
+                        resolve();
                     } else {
-                        reject()
+                        reject();
                     }
                 })
                     .then(() => {
