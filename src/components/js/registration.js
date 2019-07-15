@@ -1,10 +1,13 @@
 import login from './login';
+import { serverUrl, fetchMode } from 'settings';
+
 export default function regRequest(formRef) {
     let form = new FormData(formRef.current);
     form.delete('password-repeat');
 
-    fetch('http://127.0.0.1:8000/user/create/', {
+    fetch(serverUrl + '/user/create/', {
         method: 'POST',
+        mode: fetchMode,
         body: form
     })
         .then(response => {

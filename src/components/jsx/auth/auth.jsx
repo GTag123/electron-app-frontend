@@ -2,6 +2,9 @@ import React from 'react';
 import { Login } from './login';
 import { Reg } from './reg';
 
+import 'components/styles/input-message.css';
+import 'components/styles/auth-form.css';
+
 export class Auth extends React.Component {
     constructor(props) {
         super(props);

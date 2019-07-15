@@ -3,6 +3,7 @@ import {
     switchAuthState,
     changeUser
 } from 'components/redux/actions/authAction';
+import { serverUrl, fetchMode } from 'settings';
 
 export default function () {
     let token = window.localStorage.getItem('auth_token'),
@@ -11,8 +12,9 @@ export default function () {
         checkTokenLife = async function () {
             if (Date.now() - date > refresh_delay) {
                 try {
-                    let response = await fetch('http://127.0.0.1:8000/user/token-refresh/', {
+                    let response = await fetch(serverUrl + '/user/token-refresh/', {
                         method: 'POST',
+                        mode: fetchMode,
                         headers: {
                             'Authorization': 'Bearer ' + token,
                         }
@@ -31,8 +33,9 @@ export default function () {
             }
         };
     if (token && token.trim()) {
-        return fetch('http://127.0.0.1:8000/user/info/', {
+        return fetch(serverUrl + '/user/info/', {
             method: 'POST',
+            mode: fetchMode,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token,

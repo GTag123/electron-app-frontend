@@ -1,0 +1,134 @@
+.hidden {
+visibility:hidden
+}
+
+html,body {
+height:100%
+}
+
+.loader {
+height:100%;
+display:flex;
+justify-content:center;
+flex-direction:row;
+flex-wrap:nowrap
+}
+
+.slack {
+width:100px;
+height:100px;
+align-self:center;
+position:relative
+}
+
+.slack__green,.slack__blue,.slack__pink,.slack__orange {
+position:absolute;
+width:20px;
+height:20px;
+border-radius:20px;
+display:block
+}
+
+.slack__green::before,.slack__blue::before,.slack__pink::before,.slack__orange::before {
+right:0;
+animation-name:slack-width;
+animation-iteration-count:infinite;
+animation-direction:alternate;
+animation-direction:normal;
+animation-duration:2s;
+width:20px;
+position:absolute;
+height:20px;
+content:'';
+display:block;
+border-radius:20px
+}
+
+.slack__green {
+top:0;
+left:0;
+transform:rotate(70deg)
+}
+
+.slack__green::before {
+background-color:rgba(62,185,145,.75)
+}
+
+.slack__blue {
+top:0;
+right:0;
+transform:rotate(160deg)
+}
+
+.slack__blue::before {
+background-color:rgba(110,202,220,.75)
+}
+
+.slack__orange {
+bottom:0;
+right:0;
+transform:rotate(-110deg)
+}
+
+.slack__orange::before {
+background-color:rgba(233,168,32,.75)
+}
+
+.slack__pink {
+bottom:0;
+left:0;
+transform:rotate(-20deg)
+}
+
+.slack__pink::before {
+background-color:rgba(224,21,99,.75)
+}
+
+@keyframes slack-width {
+0% {
+width:20px;
+right:0
+}
+
+30% {
+width:120px;
+right:-100px
+}
+
+60% {
+width:20px;
+right:-100px
+}
+}
+
+@keyframes fadeOut {
+from {
+opacity:1
+}
+
+to {
+opacity:0
+}
+}
+
+@keyframes fadeIn {
+from {
+opacity:0
+}
+
+to {
+opacity:1
+}
+}
+
+.fadeOut {
+animation-name:fadeOut;
+animation-duration:.5s;
+animation-fill-mode:both
+}
+
+.fadeIn {
+animation-name:fadeIn;
+animation-duration:2s;
+animation-fill-mode:both
+}

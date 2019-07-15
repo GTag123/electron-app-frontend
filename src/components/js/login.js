@@ -3,6 +3,7 @@ import {
     switchAuthState,
     changeUser
 } from 'components/redux/actions/authAction';
+import { serverUrl, fetchMode } from 'settings';
 
 export default function login(body) { // body is FormData
     let auth = function (loginJSON) {
@@ -34,8 +35,9 @@ export default function login(body) { // body is FormData
         }
     };
 
-    fetch('http://127.0.0.1:8000/user/login/', {
+    fetch(serverUrl + '/user/login/', {
         method: 'POST',
+        mode: fetchMode,
         body: body
     })
         .then(response => response.json())
