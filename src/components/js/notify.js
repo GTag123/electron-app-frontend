@@ -1,4 +1,5 @@
 import { store } from 'components/redux/store/mainstore';
+import $ from "jquery/dist/jquery.min";
 
 export default function notificationCreate(text, color='error', wrapper=store.getState().notifWrap) {
     const colors = {
@@ -20,7 +21,7 @@ export default function notificationCreate(text, color='error', wrapper=store.ge
             always: function () {
                 this.remove();
             }
-        })
+        });
     }
 
     closeBtn.classList.add('fas', 'fa-times', 'btn-close');
@@ -40,7 +41,7 @@ export default function notificationCreate(text, color='error', wrapper=store.ge
         start: function () {
             $(this).css({
                 display: "flex"
-            })
+            });
         }
     }).animate(
         { opacity: 1 },

@@ -21,7 +21,6 @@ class MainView extends React.Component {
         if (!this.props.loginned) this.forceUpdate(); // сойдёт
     }
     render () {
-        console.log(this.props);
         const loginned  = this.props.loginned;
         return (
             <div className='view'>
